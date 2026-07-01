@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Next Gen — Employee Portal</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="brand">
+      <span class="brand-mark">NG</span>
+      <div class="brand-text">
+        <h1>Next Gen</h1>
+        <p class="brand-tagline">Employee Portal</p>
+      </div>
+    </div>
+    <nav class="header-meta" aria-label="Portal status">
+      <span class="meta-item"><span class="meta-dot" aria-hidden="true"></span>All systems normal</span>
+      <span class="meta-item" id="today-date"></span>
+    </nav>
+  </div>
+</header>
+
+<main class="portal-main">
+
+  <section class="panel announcements" aria-labelledby="announcements-heading">
+    <div class="panel-head">
+      <h2 id="announcements-heading">Announcements</h2>
+      <span class="panel-sub">Latest updates from the company</span>
+    </div>
+    <ul class="announcement-list" id="announcement-list">
+      <!-- populated by script.js -->
+    </ul>
+  </section>
+
+  <section class="panel directory" aria-labelledby="directory-heading">
+    <div class="panel-head">
+      <h2 id="directory-heading">Employee Directory</h2>
+      <span class="panel-sub">Click a column header to sort</span>
+    </div>
+
+    <div class="table-scroll">
+      <table id="employee-table">
+        <thead>
+          <tr>
+            <th scope="col" data-sort="id" data-type="number">
+              <button type="button" class="sort-btn">ID <span class="sort-icon" aria-hidden="true"></span></button>
+            </th>
+            <th scope="col" data-sort="name" data-type="text">
+              <button type="button" class="sort-btn">Name <span class="sort-icon" aria-hidden="true"></span></button>
+            </th>
+            <th scope="col" data-sort="department" data-type="text">
+              <button type="button" class="sort-btn">Department <span class="sort-icon" aria-hidden="true"></span></button>
+            </th>
+            <th scope="col" data-sort="email" data-type="text">
+              <button type="button" class="sort-btn">Email <span class="sort-icon" aria-hidden="true"></span></button>
+            </th>
+            <th scope="col" data-sort="status" data-type="text">
+              <button type="button" class="sort-btn">Status <span class="sort-icon" aria-hidden="true"></span></button>
+            </th>
+          </tr>
+        </thead>
+        <tbody id="employee-table-body">
+          <!-- populated by script.js -->
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p>&copy; <span id="footer-year"></span> Next Gen, Inc. All rights reserved.</p>
+    <p class="footer-note">Internal dashboard for informational purposes only.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
