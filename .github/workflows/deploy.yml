@@ -6,9 +6,37 @@ on:
       - master
 
 jobs:
-  validate:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Download your repository onto the GitHub runner
       - name: Checkout Repository
         uses: actions/checkout@v4
+
+      # Step 2: Install Python
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+
+      # Step 3: Run your validation script
+      - name: Validate Project
+        run: python scripts/check.py
+
+      # Step 4: Configure AWS credentials
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-north-1
+
+      # Step 5: Deploy website to S3
+      - name: Upload Website to S3
+        run: |
+          aws s3 sync . s3://github-portfolio-devops \
+            --delete \
+            --exclude ".git/*" \
+            --exclude ".github/*" \
+            --exclude "README.md"
