@@ -35,7 +35,7 @@ jobs:
       # Step 5: Deploy website to S3
       - name: Upload Website to S3
         run: |
-          aws s3 sync . s3://github-portfolio-devops \
+          aws s3 sync . s3://employee-portal-nextgen \
             --delete \
             --exclude ".git/*" \
             --exclude ".github/*" \
