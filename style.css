@@ -1,37 +1,60 @@
 /* ==========================================================================
    Next Gen Employee Portal — Stylesheet
-   Corporate / traditional business aesthetic
+   Modern, colorful corporate aesthetic
    ========================================================================== */
 
 :root {
-  /* Color tokens */
-  --color-navy-950: #0f1b33;
-  --color-navy-900: #16274a;
-  --color-navy-800: #1b2a4a;
-  --color-navy-700: #2a3c66;
-  --color-gold-600: #a8802f;
-  --color-gold-500: #b8933f;
-  --color-gold-100: #f3e9d3;
-  --color-bg: #f4f6f9;
+  /* Core brand gradient */
+  --color-indigo-700: #4338ca;
+  --color-indigo-600: #4f46e5;
+  --color-violet-600: #7c3aed;
+  --color-teal-500: #0d9488;
+  --color-sky-500: #0ea5e9;
+
+  /* Neutrals */
+  --color-bg: #f5f6fb;
   --color-surface: #ffffff;
-  --color-border: #e1e5eb;
-  --color-text: #1f2733;
-  --color-text-muted: #5b6675;
-  --color-text-faint: #8b93a3;
-  --color-success-bg: #e6f4ea;
-  --color-success-text: #256d3f;
-  --color-warning-bg: #fbf1de;
-  --color-warning-text: #8a6111;
+  --color-border: #e6e8f2;
+  --color-text: #1e2233;
+  --color-text-muted: #5c6178;
+  --color-text-faint: #9297ab;
+
+  /* Accent (used for highlights, active sort, focus rings) */
+  --color-accent: #f59e0b;
+  --color-accent-dark: #d97706;
+
+  /* Status colors */
+  --color-success-bg: #d7f6e5;
+  --color-success-text: #0a7a45;
+  --color-success-dot: #22c55e;
+  --color-warning-bg: #fef0cb;
+  --color-warning-text: #92610a;
+  --color-warning-dot: #f59e0b;
+
+  /* Department palette */
+  --dept-engineering-bg: #dbe6fe;
+  --dept-engineering-text: #1d4ed8;
+  --dept-sales-bg: #ffe3d1;
+  --dept-sales-text: #c2410c;
+  --dept-hr-bg: #fce0ef;
+  --dept-hr-text: #be185d;
+  --dept-marketing-bg: #eee0fe;
+  --dept-marketing-text: #7e22ce;
+  --dept-finance-bg: #d6f5e6;
+  --dept-finance-text: #047857;
+  --dept-itsupport-bg: #ccf3ef;
+  --dept-itsupport-text: #0f766e;
 
   /* Type */
-  --font-display: Georgia, "Iowan Old Style", "Times New Roman", serif;
+  --font-display: "Poppins", "Segoe UI", var(--font-body);
   --font-body: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --font-mono: "Courier New", Courier, monospace;
 
   /* Layout */
   --max-width: 1180px;
-  --radius: 4px;
-  --shadow-panel: 0 1px 2px rgba(15, 27, 51, 0.06), 0 1px 8px rgba(15, 27, 51, 0.04);
+  --radius: 10px;
+  --radius-sm: 6px;
+  --shadow-panel: 0 1px 2px rgba(30, 34, 51, 0.05), 0 6px 20px rgba(76, 60, 200, 0.06);
 }
 
 * {
@@ -46,7 +69,10 @@ body {
   margin: 0;
   font-family: var(--font-body);
   color: var(--color-text);
-  background: var(--color-bg);
+  background:
+    radial-gradient(1200px 500px at 10% -10%, rgba(124, 58, 237, 0.08), transparent),
+    radial-gradient(1000px 500px at 100% 0%, rgba(14, 165, 233, 0.08), transparent),
+    var(--color-bg);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
@@ -54,17 +80,17 @@ body {
 h1, h2, h3 {
   font-family: var(--font-display);
   margin: 0;
-  color: var(--color-navy-900);
+  color: var(--color-text);
 }
 
 a {
-  color: var(--color-navy-800);
+  color: var(--color-indigo-600);
 }
 
 /* Focus visibility */
 a:focus-visible,
 button:focus-visible {
-  outline: 2px solid var(--color-gold-600);
+  outline: 2px solid var(--color-accent);
   outline-offset: 2px;
 }
 
@@ -73,14 +99,21 @@ button:focus-visible {
    ========================================================================== */
 
 .site-header {
-  background: linear-gradient(180deg, var(--color-navy-900) 0%, var(--color-navy-800) 100%);
-  border-bottom: 3px solid var(--color-gold-500);
+  background: linear-gradient(120deg, var(--color-indigo-700) 0%, var(--color-violet-600) 55%, var(--color-sky-500) 100%);
+  position: relative;
+}
+
+.site-header::after {
+  content: "";
+  display: block;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-teal-500), var(--color-violet-600));
 }
 
 .header-inner {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 1.25rem 1.5rem;
+  padding: 1.35rem 1.5rem;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -98,28 +131,32 @@ button:focus-visible {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 46px;
+  height: 46px;
   flex-shrink: 0;
-  border: 1px solid var(--color-gold-500);
-  border-radius: var(--radius);
-  color: var(--color-gold-100);
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: var(--radius-sm);
+  color: #ffffff;
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 1.05rem;
   letter-spacing: 0.02em;
+  backdrop-filter: blur(2px);
 }
 
 .brand-text h1 {
   color: #ffffff;
-  font-size: 1.5rem;
+  font-size: 1.55rem;
+  font-weight: 700;
   letter-spacing: 0.01em;
 }
 
 .brand-tagline {
-  margin: 0.15rem 0 0;
-  color: var(--color-gold-100);
+  margin: 0.2rem 0 0;
+  color: #ffe9b8;
   font-size: 0.78rem;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.14em;
 }
@@ -129,7 +166,7 @@ button:focus-visible {
   align-items: center;
   gap: 1.25rem;
   font-size: 0.82rem;
-  color: #cfd7e6;
+  color: #eef0ff;
 }
 
 .meta-item {
@@ -137,14 +174,17 @@ button:focus-visible {
   align-items: center;
   gap: 0.4rem;
   white-space: nowrap;
+  background: rgba(255, 255, 255, 0.12);
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
 }
 
 .meta-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #4caf7d;
-  box-shadow: 0 0 0 3px rgba(76, 175, 125, 0.2);
+  background: #4ade80;
+  box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.3);
 }
 
 /* ==========================================================================
@@ -172,11 +212,12 @@ button:focus-visible {
 .panel-head {
   padding: 1.1rem 1.25rem 0.9rem;
   border-bottom: 1px solid var(--color-border);
-  background: #fbfcfd;
+  background: linear-gradient(180deg, #fbfbff 0%, #ffffff 100%);
 }
 
 .panel-head h2 {
   font-size: 1.15rem;
+  font-weight: 700;
 }
 
 .panel-sub {
@@ -193,32 +234,35 @@ button:focus-visible {
 .announcement-list {
   list-style: none;
   margin: 0;
-  padding: 0.5rem 0;
+  padding: 0.6rem;
 }
 
 .announcement-item {
-  padding: 0.85rem 1.25rem;
-  border-bottom: 1px solid var(--color-border);
+  padding: 0.9rem 1rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 0.5rem;
+  border-left: 4px solid var(--accent-color, var(--color-indigo-600));
+  background: #fafaff;
 }
 
 .announcement-item:last-child {
-  border-bottom: none;
+  margin-bottom: 0;
 }
 
 .announcement-title {
   margin: 0 0 0.3rem;
   font-size: 0.92rem;
-  font-weight: 600;
-  color: var(--color-navy-900);
+  font-weight: 700;
+  color: var(--color-text);
 }
 
 .announcement-date {
   display: inline-block;
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--color-gold-600);
-  font-weight: 600;
+  color: var(--accent-color, var(--color-indigo-600));
+  font-weight: 700;
   margin-bottom: 0.35rem;
 }
 
@@ -240,11 +284,11 @@ button:focus-visible {
   width: 100%;
   border-collapse: collapse;
   font-size: 0.88rem;
-  min-width: 640px;
+  min-width: 680px;
 }
 
 #employee-table thead th {
-  background: #fbfcfd;
+  background: #fafaff;
   border-bottom: 2px solid var(--color-border);
   text-align: left;
   padding: 0;
@@ -261,30 +305,32 @@ button:focus-visible {
   cursor: pointer;
   font: inherit;
   font-weight: 700;
-  color: var(--color-navy-800);
+  color: var(--color-text);
   text-transform: uppercase;
   font-size: 0.72rem;
   letter-spacing: 0.07em;
   padding: 0.85rem 1rem;
+  transition: color 0.15s ease;
 }
 
 .sort-btn:hover {
-  background: var(--color-gold-100);
+  color: var(--color-indigo-600);
+  background: #f1f0ff;
 }
 
 .sort-icon {
   font-size: 0.7rem;
-  color: var(--color-gold-600);
+  color: var(--color-accent-dark);
   min-width: 0.8em;
 }
 
 th[aria-sort="ascending"] .sort-btn,
 th[aria-sort="descending"] .sort-btn {
-  color: var(--color-gold-600);
+  color: var(--color-indigo-600);
 }
 
 #employee-table tbody td {
-  padding: 0.75rem 1rem;
+  padding: 0.7rem 1rem;
   border-bottom: 1px solid var(--color-border);
   color: var(--color-text);
   vertical-align: middle;
@@ -295,7 +341,26 @@ th[aria-sort="descending"] .sort-btn {
 }
 
 #employee-table tbody tr:hover {
-  background: #f8f9fb;
+  background: #f7f7fe;
+}
+
+.emp-name-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.emp-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #ffffff;
+  flex-shrink: 0;
 }
 
 .emp-id {
@@ -307,13 +372,38 @@ th[aria-sort="descending"] .sort-btn {
   color: var(--color-text-muted);
 }
 
-.status-pill {
+.dept-tag {
   display: inline-block;
   padding: 0.22rem 0.65rem;
   border-radius: 999px;
   font-size: 0.72rem;
-  font-weight: 600;
+  font-weight: 700;
+}
+
+.dept-engineering { background: var(--dept-engineering-bg); color: var(--dept-engineering-text); }
+.dept-sales       { background: var(--dept-sales-bg);       color: var(--dept-sales-text); }
+.dept-hr          { background: var(--dept-hr-bg);          color: var(--dept-hr-text); }
+.dept-marketing   { background: var(--dept-marketing-bg);   color: var(--dept-marketing-text); }
+.dept-finance     { background: var(--dept-finance-bg);     color: var(--dept-finance-text); }
+.dept-itsupport   { background: var(--dept-itsupport-bg);   color: var(--dept-itsupport-text); }
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.22rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
   letter-spacing: 0.02em;
+}
+
+.status-pill::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
 }
 
 .status-active {
@@ -331,8 +421,8 @@ th[aria-sort="descending"] .sort-btn {
    ========================================================================== */
 
 .site-footer {
-  background: var(--color-navy-950);
-  color: #aeb8ca;
+  background: linear-gradient(120deg, #1e1b4b 0%, #312e81 55%, #0c4a6e 100%);
+  color: #cdd3ef;
   margin-top: 1rem;
 }
 
@@ -352,7 +442,7 @@ th[aria-sort="descending"] .sort-btn {
 }
 
 .footer-note {
-  color: #7c88a0;
+  color: #9aa2cf;
 }
 
 /* ==========================================================================
@@ -373,7 +463,7 @@ th[aria-sort="descending"] .sort-btn {
 
   .header-meta {
     font-size: 0.76rem;
-    gap: 1rem;
+    gap: 0.6rem;
   }
 
   .portal-main {
@@ -386,7 +476,7 @@ th[aria-sort="descending"] .sort-btn {
   }
 
   #employee-table {
-    min-width: 560px;
+    min-width: 600px;
   }
 
   .footer-inner {
