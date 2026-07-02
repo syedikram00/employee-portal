@@ -2,6 +2,7 @@
 
 A lightweight, public-facing employee portal prototype (MVP) built with **vanilla HTML, CSS, and JavaScript** — no frameworks, no build tools, no dependencies. It displays company announcements and an employee directory in a clean, corporate-styled, fully responsive interface.
 
+LINK TO PORTAL http://employee-portal-nextgen.s3-website.eu-north-1.amazonaws.com/
 ---
 
 ## Table of Contents
